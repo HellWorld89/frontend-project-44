@@ -14,7 +14,15 @@ export default [
   ...compat.extends("airbnb"),
   {
     rules: {
-      'no-console': 'off', // Отключение правила
+      'no-console': 'off',
+      'indent': ['error', 2],
+      'import/extensions': [
+        'error',
+        'ignorePackages',
+        {
+          js: 'always', 
+        },
+      ],
     },
   },
 
