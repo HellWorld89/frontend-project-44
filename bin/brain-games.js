@@ -6,3 +6,4 @@ import startGcdGame from '../src/games/gcd.js';
 startEvenGame();
 startCalcGame();
 startGcdGame();
+startProgressionGame();
