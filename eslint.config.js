@@ -1,30 +1,29 @@
-import globals from "globals";
-import path from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
-import pluginJs from "@eslint/js";
-
-// mimic CommonJS variables -- not needed if using CommonJS
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({ baseDirectory: __dirname, recommendedConfig: pluginJs.configs.recommended });
+import globals from 'globals'
+import pluginJs from '@eslint/js'
+import tseslint from 'typescript-eslint'
+import stylistic from '@stylistic/eslint-plugin'
+import { Linter } from 'eslint'
 
 export default [
-  { languageOptions: { globals: globals.browser } },
-  ...compat.extends("airbnb"),
+  stylistic.configs.recommended,
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommendedTypeChecked,
+  ...tseslint.configs.stylisticTypeChecked,
   {
+    files: [
+      '**/*.{js,ts,tsx}',
+    ],
+  },
+  {
+    languageOptions: {
+      globals: globals.node,
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
     rules: {
-      'no-console': 'off',
-      'indent': ['error', 2],
-      'import/extensions': [
-        'error',
-        'ignorePackages',
-        {
-          js: 'always', 
-        },
-      ],
+      '@typescript-eslint/no-unused-vars': 'off',
     },
   },
-
-];
-
+] // satisfies Linter.Config[]
