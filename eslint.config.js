@@ -1,13 +1,10 @@
 import globals from 'globals';
 import pluginJs from '@eslint/js';
-import tseslint from 'typescript-eslint';
 import stylistic from '@stylistic/eslint-plugin';
 
 export default [
   stylistic.configs.recommended,
   pluginJs.configs.recommended,
-  ...tseslint.configs.recommendedTypeChecked,
-  ...tseslint.configs.stylisticTypeChecked,
   {
     files: [
       '**/*.{js,ts,tsx}',
@@ -25,4 +22,4 @@ export default [
       '@typescript-eslint/no-unused-vars': 'off',
     },
   },
-] // satisfies Linter.Config[]
+]; // satisfies Linter.Config[]

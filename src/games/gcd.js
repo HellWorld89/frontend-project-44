@@ -8,17 +8,15 @@ const generateQuestionAndAnswer = () => {
   const secondNumber = getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER);
   const calculateGcd = (a, b) => {
     let [currentA, currentB] = [a, b];
-  
     while (currentB !== 0) {
       [currentA, currentB] = [currentB, currentA % currentB];
     }
-  
     return currentA;
   };
   const question = `${firstNumber} ${secondNumber}`;
   const correctAnswer = String(calculateGcd(firstNumber, secondNumber));
 
   return [question, correctAnswer];
-}
+};
 
 export default () => runGame(gameDescription, generateQuestionAndAnswer);
