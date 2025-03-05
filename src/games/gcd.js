@@ -4,18 +4,18 @@ import { getRandomNumber, MAX_RANDOM_NUMBER, MIN_RANDOM_NUMBER } from '../utils/
 const gameDescription = 'Find the greatest common divisor of given numbers.'
 
 const generateQuestionAndAnswer = () => {
-  const num1 = getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER)
-  const num2 = getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER)
-  const getCorrectGcd = (a, b) => {
+  const firstNumber = getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER)
+  const secondNumber = getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER)
+  const calculateGcd = (a, b) => {
     while (b !== 0) {
-      let temp = b
+      let remainder = b
       b = a % b
-      a = temp
+      a = remainder
     }
     return a
   }
-  const question = `${num1} ${num2}`
-  const correctAnswer = String(getCorrectGcd(num1, num2))
+  const question = `${firstNumber} ${secondNumber}`
+  const correctAnswer = String(calculateGcd(firstNumber, secondNumber))
 
   return [question, correctAnswer]
 }

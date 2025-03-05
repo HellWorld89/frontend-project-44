@@ -4,22 +4,21 @@ import { getRandomNumber, MAX_NUMBER_ELEMENTS, MAX_RANDOM_NUMBER, MAX_STEP, MIN_
 const gameDescription = 'What number is missing in the progression?'
 
 const generateQuestionAndAnswer = () => {
-  const numberOfElements = getRandomNumber(MIN_NUMBER_ELEMENTS, MAX_NUMBER_ELEMENTS)
-  const step = getRandomNumber(MIN_STEP, MAX_STEP)
-  const startNumber = getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER)
-  const getRandomHideNumber = getRandomNumber(0, numberOfElements)
-  const sequence = [startNumber]
+  const progressionLength = getRandomNumber(MIN_NUMBER_ELEMENTS, MAX_NUMBER_ELEMENTS)
+  const progressionStep = getRandomNumber(MIN_STEP, MAX_STEP)
+  const firstElement = getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER)
+  const hiddenIndex = getRandomNumber(0, progressionLength - 1)
+  const progression = []
 
-  let num1 = startNumber
-  for (let i = 0; i < numberOfElements - 1; i += 1) {
-    const elem = num1 + step
-    num1 = elem
-    sequence.push(elem)
+  let num1 = firstElement
+  for (let i = 0; i < progressionLength; i += 1) {
+    progression.push(num1)
+    num1 += progressionStep
   }
-  const hideIndex = sequence[getRandomHideNumber]
-  sequence[getRandomHideNumber] = '..'
-  const question = sequence.join(' ')
-  const correctAnswer = String(hideIndex)
+  const hiddenValue = progression[hiddenIndex]
+  progression[hiddenIndex] = '..'
+  const question = progression.join(' ')
+  const correctAnswer = String(hiddenValue)
   return [question, correctAnswer]
 }
 
