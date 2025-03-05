@@ -1,5 +1,5 @@
 import runGame from '../index.js'
-import { getRandomNumber } from '../utils/utils.js'
+import { getRandomNumber, MAX_RANDOM_NUMBER, MIN_RANDOM_NUMBER } from '../utils/utils.js'
 
 const gameDescription = 'What is the result of the expression?'
 
@@ -19,8 +19,8 @@ const calculate = (num1, num2, operator) => {
 }
 
 const generateQuestionAndAnswer = () => {
-  const num1 = getRandomNumber(1, 100)
-  const num2 = getRandomNumber(1, 100)
+  const num1 = getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER)
+  const num2 = getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER)
   const operator = operators[getRandomNumber(0, operators.length - 1)]
 
   const question = `${num1} ${operator} ${num2}`

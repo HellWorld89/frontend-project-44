@@ -1,12 +1,12 @@
 import runGame from '../index.js'
-import { getRandomNumber } from '../utils/utils.js'
+import { getRandomNumber, MAX_NUMBER_ELEMENTS, MAX_RANDOM_NUMBER, MAX_STEP, MIN_NUMBER_ELEMENTS, MIN_RANDOM_NUMBER, MIN_STEP } from '../utils/utils.js'
 
 const gameDescription = 'What number is missing in the progression?'
 
 const generateQuestionAndAnswer = () => {
-  const numberOfElements = getRandomNumber(5, 10)
-  const step = getRandomNumber(2, 10)
-  const startNumber = getRandomNumber(1, 100)
+  const numberOfElements = getRandomNumber(MIN_NUMBER_ELEMENTS, MAX_NUMBER_ELEMENTS)
+  const step = getRandomNumber(MIN_STEP, MAX_STEP)
+  const startNumber = getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER)
   const getRandomHideNumber = getRandomNumber(0, numberOfElements)
   const sequence = [startNumber]
 
